@@ -11,7 +11,12 @@ import {
   RefineSnackbarProvider,
   notificationProvider,
 } from "@refinedev/mui";
-
+import {
+  CategoryCreate,
+  CategoryEdit,
+  CategoryList,
+  CategoryShow,
+} from "pages/categories";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import routerBindings, {
   CatchAllNavigate,
@@ -27,19 +32,14 @@ import {
   BlogPostList,
   BlogPostShow,
 } from "pages/blog-posts";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "pages/categories";
 import { Login } from "pages/login";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { parseJwt } from "utils/parse-jwt";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
 import { PlayerList } from "pages/players";
-import { PeopleAlt } from "@mui/icons-material";
+import { GameList } from "pages/games";
+import { PeopleAlt, SportsSoccer } from "@mui/icons-material";
 import { Sider  as CustomSider} from "components/layout/sider";
 
 const axiosInstance = axios.create();
@@ -151,6 +151,13 @@ function App() {
                   }
                 },
                 {
+                  name: "games",
+                  list: "/game-list",
+                  meta: {
+                    icon: <SportsSoccer/>
+                  }
+                },
+                {
                   name: "blog_posts",
                   list: "/blog-posts",
                   create: "/blog-posts/create",
@@ -159,10 +166,6 @@ function App() {
                   meta: {
                     canDelete: true,
                   },
-                },
-                {
-                  name: "players",
-                  list: "/player-list",
                 },
                 {
                   name: "categories",
@@ -202,6 +205,9 @@ function App() {
                   </Route>
                   <Route path="/player-list">
                     <Route index element={<PlayerList />} />
+                  </Route>
+                  <Route path="/game-list">
+                    <Route index element={<GameList />} />
                   </Route>
                   <Route path="/categories">
                     <Route index element={<CategoryList />} />

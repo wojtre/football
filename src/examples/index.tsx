@@ -1,3 +1,5 @@
+import { Game } from "model/game";
+
 export const players = [
     {
         "id": 1,
@@ -125,3 +127,41 @@ export const players = [
         "score": 64,
         "attendance": 75
     }]
+
+
+
+export const games: Game[] = [
+    {
+        id: 1,
+        lineup: {
+            blackPlayers: ["Player 1", "Player 2", "Player 3", "Player 1", "Player 2", "Player 3", "mart Frabka"],
+            whitePlayers: ["Player 4", "Player 5", "Player 6","Player 1", "Player 2", "Player 3", "Wojciech Trefon"],
+            benchPlayers: ["Player 7", "Player 8", "Player 9"],
+        },
+        blackTeamGoals: null,
+        whiteTeamGoals: null,
+        date: "2022-03-20",
+    },
+    {
+        id: 2,
+        lineup: {
+            blackPlayers: ["Player 10", "Player 11", "Player 12"],
+            whitePlayers: ["Player 13", "Player 14", "Player 15"],
+            benchPlayers: ["Player 16", "Player 17", "Player 18"],
+        },
+        blackTeamGoals: 0,
+        whiteTeamGoals: 2,
+        date: "2022-04-02",
+    },
+    {
+        id: 3,
+        lineup: {
+            blackPlayers: ["Player 19", "Player 20", "Player 21"],
+            whitePlayers: ["Player 22", "Player 23", "Player 24"],
+            benchPlayers: ["Player 25", "Player 26", "Player 27"],
+        },
+        blackTeamGoals: 3,
+        whiteTeamGoals: 3,
+        date: "2022-05-15",
+    },
+];

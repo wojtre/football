@@ -35,7 +35,7 @@ export const PlayerList = () => {
     <>
     <List>
       <SearchBar onChange={(e) => setSearchText(e.target.value)} label="Search player" />
-      <DataGrid columns={columns} rows={filteredRows} autoHeight checkboxSelection onSelectionModelChange={(ids) => console.log(ids)} />
+      <DataGrid columns={columns} rows={filteredRows} autoHeight  disableColumnFilter checkboxSelection onSelectionModelChange={(ids) => console.log(ids)} />
     </List>
     </>
   );
