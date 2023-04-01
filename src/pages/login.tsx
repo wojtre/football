@@ -1,6 +1,7 @@
 import { useLogin } from "@refinedev/core";
 import { useEffect, useRef } from "react";
 import { CredentialResponse } from "../interfaces/google";
+import { SportsSoccer } from "@mui/icons-material";
 
 // Todo: Update your Google Client ID here
 const GOOGLE_CLIENT_ID =
@@ -46,9 +47,12 @@ export const Login: React.FC = () => {
         height: "100vh",
         display: "flex",
         justifyContent: "center",
+        flexDirection: "column",
         alignItems: "center",
       }}
     >
+      <div><SportsSoccer/><span>Football tracker</span>
+      </div>
       <GoogleButton />
     </div>
   );

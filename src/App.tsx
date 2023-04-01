@@ -1,7 +1,6 @@
 import {
   AuthBindings,
   Authenticated,
-  GitHubBanner,
   Refine,
 } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
@@ -39,6 +38,9 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { parseJwt } from "utils/parse-jwt";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
+import { PlayerList } from "pages/players";
+import { PeopleAlt } from "@mui/icons-material";
+import { Sider  as CustomSider} from "components/layout/sider";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -130,7 +132,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
@@ -143,6 +144,13 @@ function App() {
               authProvider={authProvider}
               resources={[
                 {
+                  name: "players",
+                  list: "/player-list",
+                  meta: {
+                    icon: <PeopleAlt/>
+                  }
+                },
+                {
                   name: "blog_posts",
                   list: "/blog-posts",
                   create: "/blog-posts/create",
@@ -151,6 +159,10 @@ function App() {
                   meta: {
                     canDelete: true,
                   },
+                },
+                {
+                  name: "players",
+                  list: "/player-list",
                 },
                 {
                   name: "categories",
@@ -172,7 +184,7 @@ function App() {
                 <Route
                   element={
                     <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                      <Layout Header={Header}>
+                      <Layout Header={Header} Sider={CustomSider}>
                         <Outlet />
                       </Layout>
                     </Authenticated>
@@ -180,13 +192,16 @@ function App() {
                 >
                   <Route
                     index
-                    element={<NavigateToResource resource="blog_posts" />}
+                    element={<NavigateToResource resource="players" />}
                   />
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />
                     <Route path="create" element={<BlogPostCreate />} />
                     <Route path="edit/:id" element={<BlogPostEdit />} />
                     <Route path="show/:id" element={<BlogPostShow />} />
+                  </Route>
+                  <Route path="/player-list">
+                    <Route index element={<PlayerList />} />
                   </Route>
                   <Route path="/categories">
                     <Route index element={<CategoryList />} />
@@ -207,7 +222,7 @@ function App() {
                 <Route
                   element={
                     <Authenticated>
-                      <Layout Header={Header}>
+                      <Layout Header={Header} Sider ={CustomSider}>
                         <Outlet />
                       </Layout>
                     </Authenticated>
